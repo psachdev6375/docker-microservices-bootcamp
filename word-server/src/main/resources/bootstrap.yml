@@ -1,0 +1,41 @@
+spring:
+  cloud:
+    config:
+      uri: http://${CONFIG_HOST:localhost}:${CONFIG_PORT:8001}
+      fail-fast: true
+      
+server:
+  #port: ${PORT:${SERVER_PORT:0}}
+  port: ${SERVER_PORT:0}
+     
+#eureka:
+#  instance:
+#    metadata-map:
+#      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+      
+---
+spring:
+  profiles: subject
+  application:
+    name: subject
+---
+spring:
+  profiles: noun
+  application:
+    name: noun
+---
+spring:
+  profiles: article
+  application:
+    name: article
+---
+spring:
+  profiles: verb
+  application:
+    name: verb
+---
+spring:
+  profiles: adjective
+  application:
+    name: adjective
+      

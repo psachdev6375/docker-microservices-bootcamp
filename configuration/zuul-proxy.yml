@@ -1,0 +1,3 @@
+#zuul-proxy.yml
+
+eureka-url: http://localhost:8010/eureka/,http://localhost:8011/eureka/

@@ -1,0 +1,20 @@
+#. application.yml
+spring:
+  application:
+    name: eureka-server
+
+  profiles: default
+server:
+  port: 8010
+    
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: localhost
+  server:
+    enable-self-preservation: false
+    

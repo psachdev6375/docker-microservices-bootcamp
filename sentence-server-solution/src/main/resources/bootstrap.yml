@@ -1,0 +1,19 @@
+# Properties active for ALL profiles:
+---
+spring:
+  application:
+    name: sentence
+  cloud:
+    config:
+      uri: http://${CONFIG_HOST:localhost}:${CONFIG_PORT:8001}	# Expect the Spring Cloud Config server to be running on localhost, port 8001.  
+server:
+  port: ${SERVER_PORT:8120}      # Fix the sentence server to 8020.  This makes it easy to find.
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8010}/eureka/
+  instance:
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 2
+    lease-renewal-interval-in-seconds: 1
