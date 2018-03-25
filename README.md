@@ -1,6 +1,6 @@
-<B> Microservices Bootcamp </B>
+<B> Docker Microservices Bootcamp </B>
 
-Consists of 5 projects which showcase a complete microservices application with the following capabilities: 
+Consists of 5 projects which showcase a complete dockerized microservices application with the following capabilities: 
 <ul>
 <li>1. Service Discovery using Eureka </li>
 <li>2. Circuit Breakers using Hysterix</li>
@@ -17,3 +17,5 @@ Application: The application consists of:
 <li>5. zuul-proxy: Zuul server acting as a service proxy. </li>
 <li>6. configuration: Configuration folder which contains yml file for each profile and zuul. Spring config server connects to this directory and retrieves appropriate configuration as and when requested. </li>
 </ul>
+
+All the above run in docker containers. 
