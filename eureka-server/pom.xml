@@ -84,7 +84,7 @@
 									<version>${project.version}</version>
 									<type>jar</type>
 								</artifactItem>
-							</artifactItems><!-- <outputDirectory>../deployables</outputDirectory> -->
+							</artifactItems>
 						</configuration>
 					</execution>
 				</executions>

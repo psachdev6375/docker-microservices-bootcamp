@@ -106,7 +106,6 @@
 									<type>jar</type>
 								</artifactItem>
 							</artifactItems>
-							<outputDirectory>../deployables</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
