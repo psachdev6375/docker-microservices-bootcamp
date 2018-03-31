@@ -3,12 +3,11 @@
 spring:
   application:
     name: sentence
-  cloud:
-    config:
-      uri: http://${CONFIG_HOST:localhost}:${CONFIG_PORT:8001}	# Expect the Spring Cloud Config server to be running on localhost, port 8001.  
+#  cloud:
+#    config:
+#      uri: http://${CONFIG_HOST:localhost}:${CONFIG_PORT:8001}	# Expect the Spring Cloud Config server to be running on localhost, port 8001.  
 server:
   port: ${SERVER_PORT:8120}      # Fix the sentence server to 8020.  This makes it easy to find.
-  
 eureka:
   client:
     service-url:

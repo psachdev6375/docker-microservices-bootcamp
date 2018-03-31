@@ -14,4 +14,5 @@ buildNumber.properties
 .factorypath
 .apt_generated/
 deployables/
+data/
 *.log

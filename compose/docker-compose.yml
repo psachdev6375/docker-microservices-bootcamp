@@ -1,0 +1,95 @@
+version: '3.1'
+services:
+  eureka: 
+    image: com.puneet/eurekaserver 
+    ports: 
+    - 8010:8010 
+    container_name: eureka
+  sentence: 
+    image: com.puneet/sentenceserver 
+    ports: 
+    - 8105:8105
+    depends_on: 
+      - eureka 
+    environment: 
+      - SERVER_PORT=8105
+      - PROFILE_VALUE=sentence
+    container_name: sentence  
+  verb: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8100:8100 
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8100
+      - PROFILE_VALUE=verb 
+    container_name: verb 
+  subject: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8101:8101
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8101
+      - PROFILE_VALUE=subject 
+    container_name: subject
+  article: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8102:8102
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8102
+      - PROFILE_VALUE=article
+    container_name: article
+  adjective: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8103:8103
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8103
+      - PROFILE_VALUE=adjective 
+    container_name: adjective
+  noun: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8104:8104
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8104
+      - PROFILE_VALUE=noun 
+    container_name: noun
+  grafana:
+    image: grafana/grafana
+    ports:
+    - 3000:3000
+    volumes:
+    - ./data/grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=monitoring
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    depends_on:
+      - prometheus
+    container_name: grafana
+  prometheus:
+    image: prom/prometheus
+    ports:
+    - 9090:9090
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    - ./data/prometheus:/prometheus
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    depends_on: 
+      - eureka 
+    container_name: prometheus
+volumes:
+  prometheus_data: {}
+  grafana_data: {}

@@ -1,5 +1,0 @@
-#article.yml
-
-word-server: 
-  words: a,the
-eureka-url: http://localhost:8010/eureka/,http://localhost:8011/eureka/
