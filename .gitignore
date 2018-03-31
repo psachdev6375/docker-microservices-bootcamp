@@ -12,6 +12,7 @@ buildNumber.properties
 .project
 .settings
 .factorypath
+.DS_Store
 .apt_generated/
 deployables/
 data/
