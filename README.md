@@ -7,8 +7,8 @@ Consists of 5 projects which showcase a complete dockerized microservices applic
 <li>3. Client Side loadbalancing using Ribbon</li> 
 <li>4. Spring Cloud Netflix and Spring Profiles </li>
 <li>5. Zuul for proxy </li>
-<li>5. Monitoring using Prometheus and Grifana </li>
-<li>6. Docker Compose for setting the whole thing up </li>
+<li>6. Monitoring using Prometheus and Grifana </li>
+<li>7. Docker Compose for setting the whole thing up </li>
 </ul>
 Application: The application consists of: 
 <ul>
