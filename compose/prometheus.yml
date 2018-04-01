@@ -33,6 +33,16 @@ scrape_configs:
     metrics_path: '/prometheus'
     static_configs:
       - targets: ['noun:8104']
+  - job_name: 'zuul'
+    scrape_interval: 10s
+    metrics_path: '/prometheus'
+    static_configs:
+      - targets: ['zuul:8080']
+  - job_name: 'eureka'
+    scrape_interval: 10s
+    metrics_path: '/prometheus'
+    static_configs:
+      - targets: ['eureka:8010']
 
 
 

@@ -65,6 +65,13 @@ services:
       - SERVER_PORT=8104
       - PROFILE_VALUE=noun 
     container_name: noun
+  zuul: 
+    image: com.puneet/zuulserver 
+    ports: 
+      - 8080:8080
+    depends_on: 
+      - eureka 
+    container_name: zuul 
   grafana:
     image: grafana/grafana
     ports:

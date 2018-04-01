@@ -3,5 +3,5 @@ FROM openjdk
 VOLUME /tmp
 ADD maven/${fileName}.jar ${fileName}.jar
 RUN sh -c 'touch /${fileName}'
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-DCONFIG_HOST=config", "-DCONFIG_PORT=8001", "-DEUREKA_HOST=eureka", "-DEUREKA_PORT=8010", "-jar", "/${fileName}.jar", "--spring.profiles.active=\${PROFILE_VALUE}"]
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-DEUREKA_HOST=eureka", "-DEUREKA_PORT=8010", "-jar", "/${fileName}.jar", "--spring.profiles.active=\${PROFILE_VALUE}"]
 #ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-DCONFIG_HOST=\${CONFIG_PORT_8001_TCP_ADDR}", "-DCONFIG_PORT=\${CONFIG_PORT_8001_TCP_PORT}", "-DEUREKA_HOST=\${EUREKA_PORT_8010_TCP_ADDR}", "-DEUREKA_PORT=\${EUREKA_PORT_8010_TCP_PORT}", "-jar", "/${fileName}.jar", "--spring.profiles.active=\${PROFILE_VALUE}"]
