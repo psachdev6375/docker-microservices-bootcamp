@@ -97,6 +97,3 @@ services:
     depends_on: 
       - eureka 
     container_name: prometheus
-volumes:
-  prometheus_data: {}
-  grafana_data: {}
