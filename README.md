@@ -37,7 +37,7 @@ How to set this up?
     - com.puneet/sentenceserver <br>
     - com.puneet/zuulserver <br>
   </li>
-  <li>2. docker-compose up in compose directory</li>
+  <li>2. <b>docker-compose up</b> in compose directory</li>
   <li>3. Test sentence composition at http://localhost:8105/sentence </li>
   <li>4. Test Prometheus at http://localhost:9090/targets. </li>
   <li>5. Test Grifana at http://localhost:3000/login. Username: admin, password: monitoring</li>
