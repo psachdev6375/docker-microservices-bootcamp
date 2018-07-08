@@ -1,0 +1,182 @@
+version: '3.2'
+
+services:
+  eureka: 
+    image: com.puneet/eurekaserver 
+    ports: 
+    - 8010:8010 
+    networks: 
+      - sentence-network
+    deploy: 
+      replicas: 1
+      placement: 
+        constraints:
+        - 'node.role == manager' 
+  verb: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8100:8100 
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8100
+      - PROFILE_VALUE=verb 
+    networks: 
+      - sentence-network 
+    deploy: 
+      replicas: 2
+      placement: 
+        constraints:
+        - 'node.role == worker' 
+  subject: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8101:8101
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8101
+      - PROFILE_VALUE=subject 
+    networks: 
+      - sentence-network
+    deploy: 
+      replicas: 2
+      placement: 
+        constraints:
+        - 'node.role == worker' 
+  article: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8102:8102
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8102
+      - PROFILE_VALUE=article
+    networks: 
+      - sentence-network
+    deploy: 
+      replicas: 2
+      placement: 
+        constraints:
+        - 'node.role == worker' 
+  adjective: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8103:8103
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8103
+      - PROFILE_VALUE=adjective 
+    networks: 
+      - sentence-network
+    deploy: 
+      replicas: 2
+      placement: 
+        constraints:
+        - 'node.role == worker' 
+  noun: 
+    image: com.puneet/wordserver 
+    ports: 
+      - 8104:8104
+    depends_on: 
+    - sentence 
+    environment: 
+      - SERVER_PORT=8104
+      - PROFILE_VALUE=noun 
+    networks: 
+      - sentence-network
+    deploy: 
+      replicas: 2
+      placement: 
+        constraints:
+        - 'node.role == worker'
+  sentence: 
+    image: com.puneet/sentenceserver 
+    ports: 
+    - 8105:8105
+    depends_on: 
+      - eureka 
+    environment: 
+      - SERVER_PORT=8105
+      - PROFILE_VALUE=sentence
+    networks: 
+      - sentence-network
+    deploy: 
+      replicas: 1
+      placement: 
+        constraints:
+        - 'node.role == worker'                  
+  grafana:
+    image: grafana/grafana
+    ports:
+    - 3000:3000
+    volumes:
+      - type: volume 
+        source: grafana-data
+        target: /var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=monitoring
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    depends_on:
+      - prometheus
+    networks: 
+      - sentence-network
+    deploy: 
+      replicas: 1
+      placement: 
+        constraints:
+        - 'node.role == manager'       
+  prometheus:
+    image: prom/prometheus
+    ports:
+    - 9090:9090
+    volumes:
+      - type: bind 
+        source: ./prometheus.yml
+        target: /etc/prometheus/prometheus.yml
+      - type: bind 
+        source: ./alert.rules
+        target: /etc/prometheus/alert.rules
+      - type: volume
+        source: prometheus-data
+        target: /prometheus
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    depends_on: 
+      - eureka 
+    networks: 
+      - sentence-network
+    deploy: 
+      replicas: 1
+      placement: 
+        constraints:
+        - 'node.role == manager' 
+  portainer:
+    image: portainer/portainer
+    ports:
+    - 9000:9000
+    volumes:
+      - type: volume
+        source: portainer-data
+        target: /data portainer/portainer
+      - type: bind 
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    networks: 
+      - sentence-network
+    deploy: 
+      replicas: 1
+      placement: 
+        constraints:
+        - 'node.role == manager' 
+networks:
+  sentence-network: 
+
+volumes: 
+  prometheus-data: 
+  grafana-data: 
+  portainer-data: 
+

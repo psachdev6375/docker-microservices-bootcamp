@@ -1,0 +1,28 @@
+groups:
+- name: down_alerts
+  rules:
+  - alert: SentenceDown
+    expr: up{job="sentence"} == 0
+    for: 1m
+  - alert: VerbDown
+    expr: up{job="verb"} == 0
+    for: 1m
+  - alert: SubjectDown
+    expr: up{job="subject"} == 0
+    for: 1m
+  - alert: NounDown
+    expr: up{job="noun"} == 0
+    for: 1m
+  - alert: ArticleDown
+    expr: up{job="article"} == 0
+    for: 1m
+  - alert: AdjectiveDown
+    expr: up{job="adjective"} == 0
+    for: 1m
+  - alert: EurekaDown
+    expr: up{job="eureka"} == 0
+    for: 1m
+  - alert: Noun2Down
+    expr: up{job="noun2"} == 0
+    for: 1m
+
