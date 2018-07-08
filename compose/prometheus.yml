@@ -45,7 +45,8 @@ scrape_configs:
     metrics_path: '/prometheus'
     static_configs:
       - targets: ['eureka:8010']
-
-
-
-
+  - job_name: 'noun2'
+    scrape_interval: 10s
+    metrics_path: '/prometheus'
+    static_configs:
+      - targets: ['noun2:8106']

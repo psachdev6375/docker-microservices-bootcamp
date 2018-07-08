@@ -25,3 +25,7 @@ groups:
   - alert: ZuulDown
     expr: up{job="zuul"} == 0
     for: 1m
+  - alert: Noun2Down
+    expr: up{job="noun2"} == 0
+    for: 1m
+

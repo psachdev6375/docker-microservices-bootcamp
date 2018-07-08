@@ -65,6 +65,16 @@ services:
       - SERVER_PORT=8104
       - PROFILE_VALUE=noun 
     container_name: noun
+  noun2:
+    image: com.puneet/wordserver
+    ports:
+      - 8106:8106
+    depends_on:
+    - sentence
+    environment:
+      - SERVER_PORT=8106
+      - PROFILE_VALUE=noun
+    container_name: noun2
   zuul: 
     image: com.puneet/zuulserver 
     ports: 
